@@ -59,13 +59,14 @@ def display_flag():
   screen.shape(random_flag)
   
 def question():
+  global answer
   answer = input("What flag is this? ")
   answer += ".gif"
   
 
 # check the answer
 
-def check_answer(answer):
+def check_answer():
   global correct_answer
   if answer == random_flag:
     print("Correct!")
