@@ -78,34 +78,30 @@ def check_answer():
 # update score
 
 
-def update_score():
-  global points 
-  global lifes
+def update_score(points, lifes):
   if correct_answer == True:
-    points = points + 1
-    print("Points", str(points))
-    print("Lifes", str(lifes))
+    return points + 1
   if correct_answer == False:
-    lifes = lifes - 1
-    print("Points", str(points))
-    print("Lifes", str(lifes))
+    return lifes - 1
 
 
     
 
 # wrap everything in a run
 
-def run():
+def run(points, lifes):
   choose_flag()
   display_flag()
   question()
   check_answer()
-  update_score()
+  update_score(points, lifes)
+  print("Points", str(points))
+  print("Lifes", str(lifes))
 
 # running program
 
 while lifes > 0:
-  run()
+  run(points, lifes)
   if lifes == 0:
     again = str(input("Do you want to play again? (y/n): "))
     if again == "y":
