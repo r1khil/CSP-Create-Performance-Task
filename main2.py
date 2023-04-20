@@ -80,9 +80,11 @@ def check_answer():
 
 def update_score(points, lifes):
   if correct_answer == True:
-    return points + 1
+    points = points + 1
+    return points
   if correct_answer == False:
-    return lifes - 1
+    lifes = lifes - 1
+    return lifes
 
 
     
