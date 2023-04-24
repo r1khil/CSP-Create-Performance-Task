@@ -9,9 +9,9 @@ wn = turtle.Screen()
 
 #starting variables --------------------------------
 
-lifes = 3
+current_points = 0
 
-points = 0
+current_lifes = 3
 
 playing = True
 
@@ -64,54 +64,46 @@ def question():
   answer += ".gif"
   
 
-# check the answer
+# check the answer and update score
+
+def p_update(points):
+  points = points + 1
+  return points
+
+def l_update(lifes):
+  lifes = lifes - 1
+  return lifes
 
 def check_answer():
   global correct_answer
   if answer == random_flag:
     print("Correct!")
-    correct_answer = True
+    print(p_update(current_points))
   else:
     print("Incorrect!")
-    correct_answer = False
-  
-# update score
-
-
-def update_score(points, lifes):
-  if correct_answer == True:
-    points = points + 1
-    return points
-  if correct_answer == False:
-    lifes = lifes - 1
-    return lifes
-
+    print(l_update(current_lifes))
 
     
 
 # wrap everything in a run
 
-def run(points, lifes):
+def run():
   choose_flag()
   display_flag()
   question()
   check_answer()
-  update_score(points, lifes)
-  print("Points", str(points))
-  print("Lifes", str(lifes))
 
 # running program
 
-while lifes > 0:
-  run(points, lifes)
-  if lifes == 0:
+while current_lifes > 0:
+  run()
+  if current_lifes == 0:
     again = str(input("Do you want to play again? (y/n): "))
     if again == "y":
-        lifes = 3
+        current_lifes = 3
         continue
     else:
         exit()
-
 
 
 
