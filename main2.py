@@ -65,38 +65,43 @@ def question():
   
 
 # check the answer and update score
-
-def p_update(points):
+''''
+def p_update():
   points = points + 1
   return points
 
-def l_update(lifes):
-  lifes = lifes - 1
-  return lifes
+def l_update():
+  lifes = lifes -1 
+  return
+'''
 
 def check_answer():
-  global correct_answer
   if answer == random_flag:
-    print("Correct!")
-    print(p_update(current_points))
-  else:
-    print("Incorrect!")
-    print(l_update(current_lifes))
+    adjusted_points = current_points + 1
+  if answer != current_points:
+    adjusted_lifes = current_lifes - 1
+  return adjusted_lifes, adjusted_points
 
+def print_score(adjusted_points, adjusted_lifes):
+  print(adjusted_points)
+  print(adjusted_lifes)
+    
+     
     
 
 # wrap everything in a run
 
-def run():
+def run(adjusted_points, adjusted_lifes):
   choose_flag()
   display_flag()
   question()
   check_answer()
+  print_score(adjusted_lifes, adjusted_points)
 
 # running program
 
 while current_lifes > 0:
-  run()
+  run(adjusted_lifes, adjusted_points)
   if current_lifes == 0:
     again = str(input("Do you want to play again? (y/n): "))
     if again == "y":
