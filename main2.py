@@ -15,6 +15,8 @@ current_lifes = 3
 
 playing = True
 
+
+
 #registering images ------------------------------------------------
 
 
@@ -65,48 +67,40 @@ def question():
   
 
 # check the answer and update score
-''''
-def p_update():
-  points = points + 1
-  return points
 
-def l_update():
-  lifes = lifes -1 
-  return
-'''
+def add_points(pts, lfs):
+  pts = pts + 1
+  print("Current points:", pts)
+  print("Current lifes:", lfs)
+  return pts
 
-def check_answer():
-  if answer == random_flag:
-    adjusted_points = current_points + 1
-  if answer != current_points:
-    adjusted_lifes = current_lifes - 1
-  return adjusted_lifes, adjusted_points
-
-def print_score(adjusted_points, adjusted_lifes):
-  print(adjusted_points)
-  print(adjusted_lifes)
-    
-     
-    
-
-# wrap everything in a run
-
-def run(adjusted_points, adjusted_lifes):
-  choose_flag()
-  display_flag()
-  question()
-  check_answer()
-  print_score(adjusted_lifes, adjusted_points)
+def remove_life(lfs, pts):
+  lfs = lfs - 1
+  print("Current points:", pts)
+  print("Current lifes:", lfs)
+  return lfs
+ 
+ 
 
 # running program
 
 while current_lifes > 0:
-  run(adjusted_lifes, adjusted_points)
+  choose_flag()
+  display_flag()
+  question()
+
+  if answer == random_flag:
+    current_points = add_points(current_points, current_lifes)
+  else:
+    current_lifes = remove_life(current_lifes, current_points)
+
   if current_lifes == 0:
-    again = str(input("Do you want to play again? (y/n): "))
+    again = str(input("You lost! Do you want to play again? (y/n): "))
     if again == "y":
+        current_points = 0
         current_lifes = 3
-        continue
+        print("Points have been reset. Current points:", current_points)
+        print("Lifes have been reset. Current lifes:", current_lifes)
     else:
         exit()
 
